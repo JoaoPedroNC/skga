@@ -21,7 +21,8 @@ from hbrkga.exploitation_method_BO_only_elites import BayesianOptimizerElites
 
 
 class Decoder:
-
+/* Decoder é abstraido para que ele aceitasse todos os tipos de hiperparâmetros possíveis
+Assim, mapeamos os seguintes tipos de variáveis: categóricas, binarias e numéricas (contínuas e discretas).*/
     def __init__(self, parameters, estimator, X, y, cv):
         self._parameters = parameters
         self._estimator = estimator
@@ -69,7 +70,9 @@ class Decoder:
 
 
 class HyperBRKGASearchCV(BaseSearchCV):
-
+/*O BaseSearchCV aceita receber como estimador qualquer algoritmo que estenda a classe BaseEstimator
+Com isso damos um passo na direção do objetivo principal,o qual é ampliar a
+gama de algoritmos que o HyperBRKGA consegue otimizar*/
     def __init__(
             self,
             estimator,
